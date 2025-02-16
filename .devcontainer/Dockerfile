@@ -14,8 +14,8 @@ RUN apt install -y nodejs npm && npm install -g yarn
 RUN apt install -y libudev-dev librust-openssl-sys-dev
 RUN cargo install spl-token-cli
 # Build solana-test-validator from scratch
-RUN apt install -y libssl-dev libudev-dev pkg-config zlib1g-dev llvm clang make
-RUN git clone https://github.com/solana-labs/solana.git && cd solana && \
-  cargo build --bin solana-test-validator --release 
-RUN mv ./target/release/solana-test-validator /root/.local/share/solana/install/active_release/bin/solana-test-validator && \
-  cd .. && rm -rf solana
+RUN apt install -y libssl-dev libudev-dev pkg-config zlib1g-dev llvm clang make protobuf-compiler && \
+    git clone https://github.com/solana-labs/solana.git && cd solana && \
+    cargo build --bin solana-test-validator --release && \
+    mv ./target/release/solana-test-validator /root/.local/share/solana/install/active_release/bin/solana-test-validator && \
+    cd .. && rm -rf solana
