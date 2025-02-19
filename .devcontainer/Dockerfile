@@ -9,7 +9,8 @@ RUN curl -sSfL https://release.anza.xyz/stable/install | sh
 RUN cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
 RUN avm install latest && avm use latest
 # Install Nodejs
-RUN apt install -y nodejs npm && npm install -g yarn
+RUN apt install -y nodejs npm && npm install -g yarn && \
+    yarn add mocha -g
 # Install Token CLI (used for creating and minting tokens)
 RUN apt install -y libudev-dev librust-openssl-sys-dev
 RUN cargo install spl-token-cli
